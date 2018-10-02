@@ -1,18 +1,46 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <!-- <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <p>Loading: {{loading}}</p>
+    <ul>
+      <li v-for="restaurant in restaurants">
+        {{restaurant.title}}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+// import HelloWorld from '@/components/HelloWorld.vue'
+import RestaurantApi from '@/services/api/RestaurantApi'
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld
+
+  },
+  data(){
+    return{
+      restaurants:[],
+      loading:true
+    }
+  },
+  methods:{
+    read(){
+      RestaurantApi.GetAllRestaurants()
+          .then(restaurants => {
+            this.restaurants = restaurants
+          })
+          .catch(error => console.log(error))
+          .finally(() => {
+            // wether error or not, remove loading
+            this.loading = false
+          })
+      }
+  },
+  mounted(){
+    this.read()
   }
 }
 </script>
