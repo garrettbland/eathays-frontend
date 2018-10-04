@@ -5,7 +5,7 @@
     <p>Loading: {{loading}}</p>
     <ul>
       <li v-for="restaurant in restaurants">
-        {{restaurant.title}}
+        <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug }}">{{ restaurant.title }}{{ restaurant.slug}}</router-link>
       </li>
     </ul>
   </div>

@@ -16,6 +16,10 @@ export default new Router({
       component: Home
     },
     {
+      path: '/restaurants',
+      redirect: '/'
+    },
+    {
       path: '/restaurants/:slug',
       name: 'restaurant',
       component: Restaurant
