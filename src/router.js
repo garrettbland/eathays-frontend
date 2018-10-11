@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Restaurant from '@/views/Restaurant'
+import RestaurantList from '@/views/RestaurantList'
 import NotFound from '@/views/NotFound'
 
 Vue.use(Router)
@@ -17,7 +18,8 @@ export default new Router({
     },
     {
       path: '/restaurants',
-      redirect: '/'
+      name: 'restaurant-list',
+      component: RestaurantList
     },
     {
       path: '/restaurants/:slug',

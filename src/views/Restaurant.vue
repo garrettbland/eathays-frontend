@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import RestaurantApi from '@/services/api/RestaurantApi'
+import RestaurantsApi from '@/services/api/RestaurantsApi'
 export default {
   name: 'Restaurant',
   data(){
@@ -19,7 +19,7 @@ export default {
     read(){
       let slug = this.$route.params.slug
       // GET article data
-      RestaurantApi.GetSingleRestaurant(slug)
+      RestaurantsApi.GetSingleRestaurant(slug)
         .then(restaurant => {
           this.restaurant = restaurant
         })
