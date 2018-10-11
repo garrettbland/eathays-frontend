@@ -2,6 +2,14 @@
   <div>
     <h1 v-if="loading">Loading...</h1>
     <h1>{{restaurant.title}}</h1>
+    <hr>
+    <h2>Menu</h2>
+    <ul>
+
+      <li v-for="item in menu">
+        {{item.title}} - {{item.description}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -12,6 +20,7 @@ export default {
   data(){
     return{
       restaurant: {},
+      menu:[],
       loading: true
     }
   },
@@ -22,12 +31,27 @@ export default {
       RestaurantsApi.GetSingleRestaurant(slug)
         .then(restaurant => {
           this.restaurant = restaurant
+
+          //get menu
+          this.getMenuItems(restaurant.id)
         })
         .catch(error => console.log(error))
         .finally(() => {
           // wether error or not, remove loading
           this.loading = false
         })
+
+    },
+    getMenuItems(id){
+      RestaurantsApi.GetMenuItems(id)
+      .then(menu => {
+        this.menu = menu
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        // wether error or not, remove loading
+        //this.loading = false
+      })
     }
   },
   mounted(){

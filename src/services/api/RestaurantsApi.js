@@ -16,6 +16,14 @@ export default {
         // Login that concerns only the API here and returns the promise
         return response.data
       })
-  }
+  },
+
+  GetMenuItems(id){
+    return axios.get('/restaurants/'+id+'/menus')
+      .then(response => {
+        // Login that concerns only the API here and returns the promise
+        return response.data
+      })
+  },
 
 }
