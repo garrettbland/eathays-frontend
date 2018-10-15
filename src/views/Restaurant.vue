@@ -25,7 +25,7 @@ export default {
     }
   },
   methods:{
-    read(){
+    fetch(){
       let slug = this.$route.params.slug
       // GET article data
       RestaurantsApi.GetSingleRestaurant(slug)
@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted(){
-    this.read()
+    this.fetch()
   }
 }
 </script>

@@ -17,7 +17,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import SpecialsApi from '@/services/api/SpecialsApi'
+import RestaurantsApi from '@/services/api/RestaurantsApi'
 export default {
   name: 'Home',
   components: {
@@ -30,10 +30,10 @@ export default {
     }
   },
   methods:{
-    read(){
+    fetch(){
       //create function to get current day and return day
       var day = "Monday"
-      SpecialsApi.GetAllSpecials(day)
+      RestaurantsApi.GetSpecials(day)
           .then(specials => {
             this.specials = specials
           })
@@ -42,13 +42,13 @@ export default {
             // wether error or not, remove loading
             this.loading = false
           })
-      },
+    },
       showSpecial: function(special){
         window.alert(special.title + special.description)
       }
   },
   mounted(){
-    this.read()
+    this.fetch()
   }
 }
 </script>

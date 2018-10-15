@@ -26,4 +26,19 @@ export default {
       })
   },
 
+  GetSpecials(day){
+    return axios.get('/specials?filter={"where": {"and": [{"day": "'+day+'"},{"active":"true"}] }}')
+      .then(response => {
+        // Login that concerns only the API here and returns the promise
+        return response.data
+      })
+  },
+
+  SearchRestaurants(keywords){
+    return axios.get('/search', { params: { keywords: keywords } })
+      .then(response => {
+        return response = response.data
+      })
+  }
+
 }
