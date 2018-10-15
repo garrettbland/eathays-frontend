@@ -11,10 +11,10 @@
     </ul>
     <div>
         <input type="text" v-model="keywords" >
-        <button v-on:click="fetch(keywords)">Search</button>
+        <button v-on:click="search(keywords)">Search</button>
         <ul v-if="results.length > 0">
             <li v-for="result in results" >
-              <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug }}">{{ restaurant.title }}</router-link>
+              <router-link :to="{ name: 'restaurant', params: { slug: result.slug }}">{{ result.title }}</router-link>
             </li>
         </ul>
     </div>
@@ -34,7 +34,7 @@ export default {
     return{
       restaurants:[],
       keywords:null,
-      results:[],
+      results:{},
       loading:true
     }
   },
@@ -51,9 +51,10 @@ export default {
           })
       },
       search() {
+        console.log('searching');
       RestaurantsApi.SearchRestaurants(this.keywords)
-        .then(response => {
-          this.results = response
+        .then(results => {
+          this.results = results
         })
         .catch(error => console.log(error))
         .finally(() => {

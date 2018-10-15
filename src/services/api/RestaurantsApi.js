@@ -35,7 +35,8 @@ export default {
   },
 
   SearchRestaurants(keywords){
-    return axios.get('/search', { params: { keywords: keywords } })
+    //case insensative search using https://loopback.io/doc/en/lb2/Where-filter.html#like-and-nlike-insensitive
+    return axios.get('/restaurants?filter={"where": {"title": {"like": "'+keywords+'" ,"options":"i"}}}')
       .then(response => {
         return response = response.data
       })
