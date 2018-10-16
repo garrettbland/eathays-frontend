@@ -18,6 +18,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import RestaurantsApi from '@/services/api/RestaurantsApi'
+import moment from 'moment'
 export default {
   name: 'Home',
   components: {
@@ -31,9 +32,8 @@ export default {
   },
   methods:{
     fetch(){
-      //create function to get current day and return day
-      var day = "Monday"
-      RestaurantsApi.GetSpecials(day)
+      var date = moment(new Date()).format('dddd')
+      RestaurantsApi.GetSpecials(date)
           .then(specials => {
             this.specials = specials
           })
@@ -43,9 +43,9 @@ export default {
             this.loading = false
           })
     },
-      showSpecial: function(special){
-        window.alert(special.title + special.description)
-      }
+    showSpecial(special){
+      window.alert(special.title + special.description)
+    }
   },
   mounted(){
     this.fetch()
