@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Restaurant from '@/views/Restaurant'
 import RestaurantList from '@/views/RestaurantList'
+import Roulette from '@/views/Roulette'
 import NotFound from '@/views/NotFound'
 
 Vue.use(Router)
@@ -25,6 +26,11 @@ export default new Router({
       path: '/restaurants/:slug',
       name: 'restaurant',
       component: Restaurant
+    },
+    {
+      path: '/roulette',
+      name: 'roulette',
+      component: Roulette
     },
     {
       path: '*',

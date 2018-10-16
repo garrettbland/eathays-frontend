@@ -40,6 +40,14 @@ export default {
       .then(response => {
         return response = response.data
       })
+  },
+
+  GetRandomRestaurant(){
+    //case insensative search using https://loopback.io/doc/en/lb2/Where-filter.html#like-and-nlike-insensitive
+    return axios.get('/restaurants/random')
+      .then(response => {
+        return response = response.data
+      })
   }
 
 }
